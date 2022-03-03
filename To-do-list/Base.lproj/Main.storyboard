@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="To_do_list" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="To_do_list" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,7 +44,7 @@
                                         <rect key="frame" x="0.0" y="54" width="414" height="798"/>
                                         <color key="backgroundColor" name="MyColorSet"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="wZQ-Jq-mvc">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="wZQ-Jq-mvc" customClass="TableViewCell" customModule="To_do_list" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="44.5" width="414" height="22"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wZQ-Jq-mvc" id="VHL-ym-Ip5">
@@ -76,6 +76,11 @@
                                                         <constraint firstItem="d9E-Yq-mOJ" firstAttribute="top" secondItem="VHL-ym-Ip5" secondAttribute="top" id="xAC-9h-9Q8"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="commonView" destination="VHL-ym-Ip5" id="9BX-cp-m7O"/>
+                                                    <outlet property="descriptionLabel" destination="uMP-jr-zLU" id="Dlk-c6-8xj"/>
+                                                    <outlet property="titleLabel" destination="NLS-jr-e6L" id="2cZ-lr-LeW"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -123,14 +128,16 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HHU-uw-kI9">
                                         <rect key="frame" x="0.0" y="60" width="414" height="240"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlm-yF-DKm">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ld3-fP-dgp">
+                                                <rect key="frame" x="12" y="0.0" width="390" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Q8u-68-uvs"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qxR-M0-9Lt">
-                                                <rect key="frame" x="12" y="28.5" width="390" height="153.5"/>
+                                                <rect key="frame" x="12" y="58" width="390" height="124"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -150,10 +157,10 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="Jlm-yF-DKm" firstAttribute="leading" secondItem="HHU-uw-kI9" secondAttribute="leading" id="0RH-14-eTy"/>
+                                            <constraint firstItem="ld3-fP-dgp" firstAttribute="leading" secondItem="HHU-uw-kI9" secondAttribute="leading" constant="12" id="9ut-M4-k70"/>
                                             <constraint firstItem="qxR-M0-9Lt" firstAttribute="leading" secondItem="HHU-uw-kI9" secondAttribute="leading" constant="12" id="D5u-Tu-57d"/>
                                             <constraint firstAttribute="trailing" secondItem="qxR-M0-9Lt" secondAttribute="trailing" constant="12" id="MZT-TO-IQD"/>
-                                            <constraint firstAttribute="trailing" secondItem="Jlm-yF-DKm" secondAttribute="trailing" id="wue-zK-r1F"/>
+                                            <constraint firstAttribute="trailing" secondItem="ld3-fP-dgp" secondAttribute="trailing" constant="12" id="u82-dI-ZNC"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -174,7 +181,7 @@
                     </view>
                     <connections>
                         <outlet property="descriptionField" destination="qxR-M0-9Lt" id="Gis-dM-1va"/>
-                        <outlet property="taskTitleLabel" destination="Jlm-yF-DKm" id="irW-c0-COp"/>
+                        <outlet property="titleField" destination="ld3-fP-dgp" id="YhY-SH-CmM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gqd-7J-yPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

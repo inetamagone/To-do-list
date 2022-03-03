@@ -13,8 +13,9 @@
 		FCEE43B027D0ABB20073AE7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCEE43AE27D0ABB20073AE7E /* Main.storyboard */; };
 		FCEE43B227D0ABB70073AE7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCEE43B127D0ABB70073AE7E /* Assets.xcassets */; };
 		FCEE43B527D0ABB70073AE7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCEE43B327D0ABB70073AE7E /* LaunchScreen.storyboard */; };
-		FCEE43BE27D0BCED0073AE7E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEE43BD27D0BCED0073AE7E /* ViewModel.swift */; };
+		FCEE43BE27D0BCED0073AE7E /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEE43BD27D0BCED0073AE7E /* TaskManager.swift */; };
 		FCEE43C027D0BE700073AE7E /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEE43BF27D0BE700073AE7E /* TaskViewController.swift */; };
+		FCEE43C427D0DE480073AE7E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEE43C327D0DE480073AE7E /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +27,9 @@
 		FCEE43B127D0ABB70073AE7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FCEE43B427D0ABB70073AE7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FCEE43B627D0ABB70073AE7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FCEE43BD27D0BCED0073AE7E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		FCEE43BD27D0BCED0073AE7E /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 		FCEE43BF27D0BE700073AE7E /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		FCEE43C327D0DE480073AE7E /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +64,10 @@
 			children = (
 				FCEE43A827D0ABB20073AE7E /* AppDelegate.swift */,
 				FCEE43AA27D0ABB20073AE7E /* SceneDelegate.swift */,
+				FCEE43C227D0DBDD0073AE7E /* Model */,
+				FCEE43C527D0DE530073AE7E /* View */,
 				FCEE43BC27D0BA440073AE7E /* Controller */,
 				FCEE43AE27D0ABB20073AE7E /* Main.storyboard */,
-				FCEE43C127D0BEEB0073AE7E /* TaskController */,
 				FCEE43B127D0ABB70073AE7E /* Assets.xcassets */,
 				FCEE43B327D0ABB70073AE7E /* LaunchScreen.storyboard */,
 				FCEE43B627D0ABB70073AE7E /* Info.plist */,
@@ -76,17 +79,25 @@
 			isa = PBXGroup;
 			children = (
 				FCEE43AC27D0ABB20073AE7E /* ViewController.swift */,
-				FCEE43BD27D0BCED0073AE7E /* ViewModel.swift */,
+				FCEE43BF27D0BE700073AE7E /* TaskViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		FCEE43C127D0BEEB0073AE7E /* TaskController */ = {
+		FCEE43C227D0DBDD0073AE7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FCEE43BF27D0BE700073AE7E /* TaskViewController.swift */,
+				FCEE43BD27D0BCED0073AE7E /* TaskManager.swift */,
 			);
-			path = TaskController;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FCEE43C527D0DE530073AE7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FCEE43C327D0DE480073AE7E /* TableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,7 +174,8 @@
 				FCEE43C027D0BE700073AE7E /* TaskViewController.swift in Sources */,
 				FCEE43AD27D0ABB20073AE7E /* ViewController.swift in Sources */,
 				FCEE43A927D0ABB20073AE7E /* AppDelegate.swift in Sources */,
-				FCEE43BE27D0BCED0073AE7E /* ViewModel.swift in Sources */,
+				FCEE43C427D0DE480073AE7E /* TableViewCell.swift in Sources */,
+				FCEE43BE27D0BCED0073AE7E /* TaskManager.swift in Sources */,
 				FCEE43AB27D0ABB20073AE7E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
