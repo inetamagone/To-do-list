@@ -37,8 +37,8 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
-        if !taskManager.titleArray.isEmpty {
-            count = taskManager.titleArray.count
+        if !taskManager.tasks.isEmpty {
+            count = taskManager.tasks.count
         } else {
             count = 0
         }
@@ -47,10 +47,9 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as? TableViewCell else {return .init()}
-        cell.titleLabel.text = taskManager.titleArray[indexPath.row]
-        cell.descriptionLabel.text = taskManager.descriptionArray[indexPath.row]
+        cell.titleLabel.text = taskManager.tasks[indexPath.row].title
+        cell.descriptionLabel.text = taskManager.tasks[indexPath.row].description
         return cell
     }
-    
 }
 

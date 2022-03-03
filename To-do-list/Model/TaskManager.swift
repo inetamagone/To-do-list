@@ -9,11 +9,15 @@ import UIKit
 
 class TaskManager {
     
-    // MARK: - Variables
+    // MARK: - Structure
     
-    var titleArray = [String]()
-    var descriptionArray = [String]()
- 
+    struct Task {
+        var title: String
+        var description: String
+    }
+    
+    var tasks: [Task] = []
+
     // MARK: - Methods
     
     // ViewController
@@ -23,9 +27,7 @@ class TaskManager {
     
     // TaskViewController
     func addTask(title: String, description: String) {
-        titleArray.append(title)
-        descriptionArray.append(description)
-        print(titleArray, descriptionArray)
+        tasks.append(Task(title: title, description: description))
     }
     
 }
