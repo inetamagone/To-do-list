@@ -12,6 +12,8 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var descriptionField: UITextField!
     
+    public var completionHandler: (() -> Void)?
+    
     private let taskManager = TaskManager()
     
     override func viewDidLoad() {
@@ -27,7 +29,9 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
         guard let title = titleField.text, !title.isEmpty else { return }
         guard let description = descriptionField.text, !description.isEmpty else { return }
         taskManager.addTask(title: title, description: description)
-        self.dismiss(animated: true, completion: nil)
+        print(taskManager.tasks)
+        completionHandler?()
+        navigationController?.popToRootViewController(animated: true)
     }
     
 }

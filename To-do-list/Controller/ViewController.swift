@@ -28,9 +28,15 @@ class ViewController: UIViewController {
     
     func openTaskEdition() {
         guard let taskViewController = storyboard?.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return }
-        present(taskViewController, animated: true, completion: nil)
+        taskViewController.completionHandler = { [weak self ] in
+            self?.refresh()
+        }
+        navigationController?.pushViewController(taskViewController.self, animated: true)
     }
-    
+    func refresh() {
+        tableView.reloadData()
+        print(taskManager.tasks)
+    }
 }
 
 extension ViewController: UITableViewDataSource {
