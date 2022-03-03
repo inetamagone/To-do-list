@@ -20,9 +20,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction func addTask(_ sender: Any) {
+        openTaskEdition()
     }
     
     @IBAction func deleteTask(_ sender: Any) {
+    }
+    
+    func openTaskEdition() {
+        guard let taskViewController = storyboard?.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return }
+        present(taskViewController, animated: true, completion: nil)
     }
     
 }
