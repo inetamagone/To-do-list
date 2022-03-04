@@ -69,16 +69,25 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskManager.tasks.count
+        if taskManager.tasks.count == 0 {
+            return 1
+        } else {
+            return taskManager.tasks.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as? TableViewCell else {return .init()}
+        if taskManager.tasks.count != 0 {
         cell.titleLabel.text = taskManager.tasks[indexPath.row].title
         cell.descriptionLabel.text = taskManager.tasks[indexPath.row].description
         
         // Checkmarks
         cell.accessoryType = taskManager.tasks[indexPath.row].completed ? .checkmark : .none
+        } else {
+            cell.titleLabel.text = "No tasks"
+            cell.descriptionLabel.text = "Add Tasks by clicking on + button"
+        }
         return cell
     }
 }
