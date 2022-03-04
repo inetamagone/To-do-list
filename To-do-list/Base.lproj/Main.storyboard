@@ -54,7 +54,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="commonView" destination="VHL-ym-Ip5" id="9BX-cp-m7O"/>
                                             <outlet property="descriptionLabel" destination="uMP-jr-zLU" id="Dlk-c6-8xj"/>
                                             <outlet property="titleLabel" destination="NLS-jr-e6L" id="2cZ-lr-LeW"/>
                                         </connections>
@@ -79,7 +78,7 @@
                         <barButtonItem key="leftBarButtonItem" image="trash" catalog="system" id="9Bl-HH-GwJ">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="deleteTask:" destination="BYZ-38-t0r" id="XjF-SW-lKo"/>
+                                <action selector="deleteTasks:" destination="BYZ-38-t0r" id="fja-lk-zST"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="hx6-o8-DlG">
@@ -117,17 +116,18 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HHU-uw-kI9">
                                         <rect key="frame" x="0.0" y="60" width="414" height="240"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ld3-fP-dgp">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ld3-fP-dgp">
                                                 <rect key="frame" x="12" y="0.0" width="390" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Q8u-68-uvs"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qxR-M0-9Lt">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qxR-M0-9Lt">
                                                 <rect key="frame" x="12" y="58" width="390" height="124"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZM-w4-JrZ">

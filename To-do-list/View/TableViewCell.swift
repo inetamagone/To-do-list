@@ -11,7 +11,6 @@ class TableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "cell"
     
-    @IBOutlet weak var commonView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     

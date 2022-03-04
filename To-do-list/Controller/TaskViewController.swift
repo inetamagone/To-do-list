@@ -28,10 +28,11 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let title = titleField.text, !title.isEmpty else { return }
         guard let description = descriptionField.text, !description.isEmpty else { return }
-        taskManager.addTask(title: title, description: description)
-        print(taskManager.tasks)
-        completionHandler?()
-        navigationController?.popToRootViewController(animated: true)
+        self.taskManager.addTask(title: title, description: description)
+        print("TaskViewController: ", self.taskManager.tasks)
+        self.completionHandler?()
+        self.navigationController?.popToRootViewController(animated: true)
+        
     }
     
 }
