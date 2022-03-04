@@ -116,20 +116,21 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HHU-uw-kI9">
                                         <rect key="frame" x="0.0" y="60" width="414" height="240"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ld3-fP-dgp">
+                                            <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ld3-fP-dgp">
                                                 <rect key="frame" x="12" y="0.0" width="390" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Q8u-68-uvs"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qxR-M0-9Lt">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08I-MT-fSU">
                                                 <rect key="frame" x="12" y="58" width="390" height="124"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZM-w4-JrZ">
                                                 <rect key="frame" x="157" y="190" width="100" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -146,9 +147,9 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="08I-MT-fSU" firstAttribute="leading" secondItem="HHU-uw-kI9" secondAttribute="leading" constant="12" id="5hV-Jz-W8b"/>
                                             <constraint firstItem="ld3-fP-dgp" firstAttribute="leading" secondItem="HHU-uw-kI9" secondAttribute="leading" constant="12" id="9ut-M4-k70"/>
-                                            <constraint firstItem="qxR-M0-9Lt" firstAttribute="leading" secondItem="HHU-uw-kI9" secondAttribute="leading" constant="12" id="D5u-Tu-57d"/>
-                                            <constraint firstAttribute="trailing" secondItem="qxR-M0-9Lt" secondAttribute="trailing" constant="12" id="MZT-TO-IQD"/>
+                                            <constraint firstAttribute="trailing" secondItem="08I-MT-fSU" secondAttribute="trailing" constant="12" id="Wnm-OQ-EeL"/>
                                             <constraint firstAttribute="trailing" secondItem="ld3-fP-dgp" secondAttribute="trailing" constant="12" id="u82-dI-ZNC"/>
                                         </constraints>
                                     </stackView>
@@ -169,7 +170,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="descriptionField" destination="qxR-M0-9Lt" id="Gis-dM-1va"/>
+                        <outlet property="descriptionField" destination="08I-MT-fSU" id="Ztu-hn-dRC"/>
                         <outlet property="titleField" destination="ld3-fP-dgp" id="YhY-SH-CmM"/>
                     </connections>
                 </viewController>
@@ -203,6 +204,9 @@
         <namedColor name="MyColorSet">
             <color red="0.79000002145767212" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

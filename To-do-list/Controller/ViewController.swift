@@ -17,7 +17,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 60
     }
     
     func refresh() {
@@ -38,13 +37,29 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(taskViewController.self, animated: true)
     }
     
+    func deleteAll() {
+        taskManager.tasks.removeAll()
+        taskManager.reloadTableView(tableView: tableView)
+    }
+    
     @IBAction func addTask(_ sender: Any) {
         openTaskEdition()
     }
     
     @IBAction func deleteTasks(_ sender: Any) {
         if taskManager.tasks.count != 0 {
-            taskManager.tasks.removeAll()
+            let alertController = UIAlertController(title: "Delete All Tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
+            let addActionButton = UIAlertAction(title: "Delete", style: .destructive) { action in
+                self.deleteAll()
+            }
+            
+            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertController.addAction(addActionButton)
+            alertController.addAction(cancelButton)
+            
+            present(alertController, animated: true, completion: nil)
+        } else {
             taskManager.reloadTableView(tableView: tableView)
         }
     }
@@ -70,7 +85,7 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     
-    // Deleting only one task
+    // Deleting only one task by swiping
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.taskManager.tasks.remove(at: indexPath.row)
