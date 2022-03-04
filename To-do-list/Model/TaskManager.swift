@@ -17,7 +17,7 @@ class TaskManager {
     }
     
     var tasks: [Task] = []
-
+    
     // MARK: - Methods
     
     // ViewController

@@ -20,6 +20,26 @@ class ViewController: UIViewController {
         tableView.rowHeight = 60
     }
     
+    func refresh() {
+        let taskDictionnary = UserDefaults.standard.object(forKey: "newTask") as? [String: String] ?? [String: String]()
+        print(taskDictionnary)
+        guard let titleString = taskDictionnary["title"] else { return }
+        guard let descriptionString = taskDictionnary["description"] else { return }
+        print("Title string: ", titleString)
+        print("Description string: ", descriptionString)
+        taskManager.addTask(title: titleString, description: descriptionString)
+        
+        taskManager.reloadTableView(tableView: tableView)
+    }
+    
+    func openTaskEdition() {
+        guard let taskViewController = storyboard?.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return }
+        taskViewController.completionHandler = {
+            self.refresh()
+        }
+        navigationController?.pushViewController(taskViewController.self, animated: true)
+    }
+    
     @IBAction func addTask(_ sender: Any) {
         openTaskEdition()
     }
@@ -31,18 +51,6 @@ class ViewController: UIViewController {
         }
     }
     
-    func openTaskEdition() {
-        guard let taskViewController = storyboard?.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return }
-        taskViewController.completionHandler = { [ weak self ] in
-            self?.refresh()
-        }
-        navigationController?.pushViewController(taskViewController.self, animated: true)
-    }
-    
-    func refresh() {
-        taskManager.reloadTableView(tableView: tableView)
-        print("ViewController: ", taskManager.tasks)
-    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -62,11 +70,11 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     
     // Deleting only one task
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.delete(taskManager.tasks[indexPath.row])
-        }
-        taskManager.reloadTableView(tableView: self.tableView)
-    }
+    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    //        if editingStyle == .delete {
+    //            tableView.delete(taskManager.tasks[indexPath.row])
+    //        }
+    //        taskManager.reloadTableView(tableView: self.tableView)
+    //    }
 }
 
