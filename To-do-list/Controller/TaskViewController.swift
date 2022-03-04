@@ -12,12 +12,12 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var descriptionField: UITextField!
     
+    // Will take refresh() function from ViewController to pass UserDefaults and reload table view before going back to root VC
     public var completionHandler: (() -> Void)?
-    
-    private let taskManager = TaskManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.titleField.delegate = self
         self.descriptionField.delegate = self
         
