@@ -26,8 +26,8 @@ class TaskManager {
         tableView.reloadData()
     }
     
-    // TaskViewController
-    func addTask(title: String, description: String) {
+    // Called in MainViewModel, refresh()
+    func addOneTask(title: String, description: String) {
         tasks.append(Task(title: title, description: description, completed: false))
     }
     

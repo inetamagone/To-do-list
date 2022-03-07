@@ -12,10 +12,11 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var descriptionField: UITextView!
     
-    // Will take refresh() function from ViewController to pass UserDefaults and reload table view before going back to root VC
-    public var completionHandler: (() -> Void)?
+    private var taskViewModel: TaskViewModel?
     
-    
+    func configure(taskViewModel: TaskViewModel) {
+        self.taskViewModel = taskViewModel
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +46,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let title = titleField.text, !title.isEmpty else { return }
         guard let description = descriptionField.text, !description.isEmpty else { return }
-        
-        let taskDictionnary = ["title": title, "description": description]
-        UserDefaults.standard.set(taskDictionnary, forKey: "newTask")
-        
-        completionHandler?()
-        navigationController?.popToRootViewController(animated: true)
+        taskViewModel?.userDefaultsRefresh(title: title, description: description)
     }
     
 }

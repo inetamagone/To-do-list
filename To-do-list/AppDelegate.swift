@@ -13,7 +13,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let controller = ViewController()
+        let mainViewModel = MainViewModel()
+        
+        let taskController = TaskViewController()
+        let taskViewModel = TaskViewModel()
+        
+        let navigationController = UINavigationController(rootViewController: controller)
+        mainViewModel.onOpenTaskViewController = { [ weak self ] in
+            navigationController.pushViewController(taskController.self, animated: true)
+        }
+        controller.configure(mainViewModel: mainViewModel)
+        
+        taskViewModel.onRefresh = { [ weak self ] in
+            mainViewModel.refresh()
+            taskController.present(controller, animated: true, completion: nil)
+        }
+        taskController.configure(taskViewModel: taskViewModel)
+        
         return true
     }
 

@@ -9,9 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    
+    private var mainViewModel: MainViewModel?
     private let taskManager = TaskManager()
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,51 +20,17 @@ class ViewController: UIViewController {
         tableView.delegate = self
     }
     
-    func refresh() {
-        let taskDictionnary = UserDefaults.standard.object(forKey: "newTask") as? [String: String] ?? [String: String]()
-        guard let titleString = taskDictionnary["title"] else { return }
-        guard let descriptionString = taskDictionnary["description"] else { return }
-        taskManager.addTask(title: titleString, description: descriptionString)
-        
-        taskManager.reloadTableView(tableView: tableView)
-    }
-    
-    func openTaskEdition() {
-        guard let taskViewController = storyboard?.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return }
-        
-        taskViewController.completionHandler = {
-            self.refresh()
-        }
-        navigationController?.pushViewController(taskViewController.self, animated: true)
-    }
-    
-    func deleteAll() {
-        taskManager.tasks.removeAll()
-        taskManager.reloadTableView(tableView: tableView)
+    func configure(mainViewModel: MainViewModel) {
+        self.mainViewModel = mainViewModel
     }
     
     @IBAction func addTask(_ sender: Any) {
-        openTaskEdition()
+        mainViewModel?.shouldOpenTaskViewController()
     }
     
     @IBAction func deleteTasks(_ sender: Any) {
-        if taskManager.tasks.count != 0 {
-            let alertController = UIAlertController(title: "Delete All Tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
-            let addActionButton = UIAlertAction(title: "Delete", style: .destructive) { action in
-                self.deleteAll()
-            }
-            
-            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alertController.addAction(addActionButton)
-            alertController.addAction(cancelButton)
-            
-            present(alertController, animated: true, completion: nil)
-        } else {
-            taskManager.reloadTableView(tableView: tableView)
-        }
+        mainViewModel?.deleteAllTasks()
     }
-    
 }
 
 extension ViewController: UITableViewDataSource {
