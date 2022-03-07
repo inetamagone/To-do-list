@@ -27,10 +27,6 @@ class MainViewModel {
         taskManager.reloadTableView(tableView: viewController.tableView)
     }
     
-    func reloadTableView(tableView: UITableView) {
-        tableView.reloadData()
-    }
-    
     func deleteAllTasks() {
         if taskManager.tasks.count != 0 {
             let alertController = UIAlertController(title: "Delete All Tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
