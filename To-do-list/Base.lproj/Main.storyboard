@@ -22,14 +22,14 @@
                                 <color key="backgroundColor" name="MyColorSet"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="wZQ-Jq-mvc" customClass="TableViewCell" customModule="To_do_list" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="22"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wZQ-Jq-mvc" id="VHL-ym-Ip5">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="22"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="d9E-Yq-mOJ">
-                                                    <rect key="frame" x="12" y="0.0" width="390" height="22"/>
+                                                    <rect key="frame" x="12" y="12" width="390" height="22"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLS-jr-e6L">
                                                             <rect key="frame" x="0.0" y="0.0" width="186.5" height="22"/>
@@ -48,9 +48,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="d9E-Yq-mOJ" secondAttribute="trailing" constant="12" id="5M7-sq-BY8"/>
-                                                <constraint firstAttribute="bottom" secondItem="d9E-Yq-mOJ" secondAttribute="bottom" id="GYA-pq-6XL"/>
+                                                <constraint firstAttribute="bottom" secondItem="d9E-Yq-mOJ" secondAttribute="bottom" constant="12" id="GYA-pq-6XL"/>
                                                 <constraint firstItem="d9E-Yq-mOJ" firstAttribute="leading" secondItem="VHL-ym-Ip5" secondAttribute="leading" constant="12" id="iBg-AC-TWj"/>
-                                                <constraint firstItem="d9E-Yq-mOJ" firstAttribute="top" secondItem="VHL-ym-Ip5" secondAttribute="top" id="xAC-9h-9Q8"/>
+                                                <constraint firstItem="d9E-Yq-mOJ" firstAttribute="top" secondItem="VHL-ym-Ip5" secondAttribute="top" constant="12" id="xAC-9h-9Q8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -121,7 +121,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Q8u-68-uvs"/>
                                                 </constraints>
-                                                <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
@@ -214,7 +213,7 @@
             <color red="0.79000002145767212" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TaskColorSet">
-            <color red="0.55362993883082967" green="1" blue="0.81776130319467888" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55400002002716064" green="1" blue="0.81800001859664917" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
