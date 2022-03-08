@@ -13,9 +13,13 @@ class MainViewModel {
     private let taskManager = TaskManager()
     
     var onOpenTaskViewController: (() -> Void)?
-
     func shouldOpenTaskViewController() {
         self.onOpenTaskViewController?()
+    }
+    
+    var onReloadTableView: (() -> Void)?
+    func shouldReloadTableView() {
+        self.onReloadTableView?()
     }
     
     func refresh() {
@@ -23,30 +27,6 @@ class MainViewModel {
         guard let titleString = taskDictionnary["title"] else { return }
         guard let descriptionString = taskDictionnary["description"] else { return }
         taskManager.addOneTask(title: titleString, description: descriptionString)
-        
-        taskManager.reloadTableView(tableView: viewController.tableView)
-    }
-    
-    func deleteAllTasks() {
-        if taskManager.tasks.count != 0 {
-            let alertController = UIAlertController(title: "Delete All Tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
-            let addActionButton = UIAlertAction(title: "Delete", style: .destructive) { action in
-                self.deleteAll()
-            }
-            
-            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alertController.addAction(addActionButton)
-            alertController.addAction(cancelButton)
-            
-            viewController.present(alertController, animated: true, completion: nil)
-        } else {
-            taskManager.reloadTableView(tableView: viewController.tableView)
-        }
-    }
-    
-    func deleteAll() {
-        taskManager.tasks.removeAll()
-        taskManager.reloadTableView(tableView: viewController.tableView)
+        shouldReloadTableView()
     }
 }

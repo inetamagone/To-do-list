@@ -17,85 +17,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7N9-cT-3jc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Boj-TE-pou">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGP-Ci-fup">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                        <items>
-                                            <navigationItem title="To do List" id="UWG-2K-95S">
-                                                <barButtonItem key="leftBarButtonItem" image="trash" catalog="system" id="9Bl-HH-GwJ">
-                                                    <color key="tintColor" systemColor="labelColor"/>
-                                                    <connections>
-                                                        <action selector="deleteTasks:" destination="BYZ-38-t0r" id="fja-lk-zST"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                                <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="hx6-o8-DlG">
-                                                    <color key="tintColor" systemColor="labelColor"/>
-                                                    <connections>
-                                                        <action selector="addTask:" destination="BYZ-38-t0r" id="YbP-T6-ZOG"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Boj-TE-pou">
-                                        <rect key="frame" x="0.0" y="60" width="414" height="792"/>
-                                        <color key="backgroundColor" name="MyColorSet"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="wZQ-Jq-mvc" customClass="TableViewCell" customModule="To_do_list" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="414" height="46"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wZQ-Jq-mvc" id="VHL-ym-Ip5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                <color key="backgroundColor" name="MyColorSet"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="wZQ-Jq-mvc" customClass="TableViewCell" customModule="To_do_list" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wZQ-Jq-mvc" id="VHL-ym-Ip5">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="d9E-Yq-mOJ">
+                                                    <rect key="frame" x="12" y="12" width="390" height="22"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="d9E-Yq-mOJ">
-                                                            <rect key="frame" x="12" y="12" width="390" height="22"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLS-jr-e6L">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="186.5" height="22"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMP-jr-zLU">
-                                                                    <rect key="frame" x="203.5" y="0.0" width="186.5" height="22"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLS-jr-e6L">
+                                                            <rect key="frame" x="0.0" y="0.0" width="186.5" height="22"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMP-jr-zLU">
+                                                            <rect key="frame" x="203.5" y="0.0" width="186.5" height="22"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="d9E-Yq-mOJ" secondAttribute="trailing" constant="12" id="5M7-sq-BY8"/>
-                                                        <constraint firstAttribute="bottom" secondItem="d9E-Yq-mOJ" secondAttribute="bottom" constant="12" id="GYA-pq-6XL"/>
-                                                        <constraint firstItem="d9E-Yq-mOJ" firstAttribute="leading" secondItem="VHL-ym-Ip5" secondAttribute="leading" constant="12" id="iBg-AC-TWj"/>
-                                                        <constraint firstItem="d9E-Yq-mOJ" firstAttribute="top" secondItem="VHL-ym-Ip5" secondAttribute="top" constant="12" id="xAC-9h-9Q8"/>
+                                                        <constraint firstItem="uMP-jr-zLU" firstAttribute="top" secondItem="d9E-Yq-mOJ" secondAttribute="top" id="7fN-Q0-jg8"/>
+                                                        <constraint firstAttribute="bottom" secondItem="NLS-jr-e6L" secondAttribute="bottom" id="Vmv-ZK-AWy"/>
+                                                        <constraint firstItem="NLS-jr-e6L" firstAttribute="top" secondItem="d9E-Yq-mOJ" secondAttribute="top" id="jeB-IZ-Wgu"/>
+                                                        <constraint firstAttribute="bottom" secondItem="uMP-jr-zLU" secondAttribute="bottom" id="saQ-RA-m8f"/>
                                                     </constraints>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="descriptionLabel" destination="uMP-jr-zLU" id="Dlk-c6-8xj"/>
-                                                    <outlet property="titleLabel" destination="NLS-jr-e6L" id="2cZ-lr-LeW"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="d9E-Yq-mOJ" secondAttribute="trailing" constant="12" id="5M7-sq-BY8"/>
+                                                <constraint firstAttribute="bottom" secondItem="d9E-Yq-mOJ" secondAttribute="bottom" constant="12" id="GYA-pq-6XL"/>
+                                                <constraint firstItem="d9E-Yq-mOJ" firstAttribute="leading" secondItem="VHL-ym-Ip5" secondAttribute="leading" constant="12" id="iBg-AC-TWj"/>
+                                                <constraint firstItem="d9E-Yq-mOJ" firstAttribute="top" secondItem="VHL-ym-Ip5" secondAttribute="top" constant="12" id="xAC-9h-9Q8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="bJY-0d-wfV"/>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="Yf0-va-bgk"/>
+                                            <outlet property="descriptionLabel" destination="uMP-jr-zLU" id="Dlk-c6-8xj"/>
+                                            <outlet property="titleLabel" destination="NLS-jr-e6L" id="2cZ-lr-LeW"/>
                                         </connections>
-                                    </tableView>
-                                </subviews>
-                            </stackView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="bJY-0d-wfV"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Yf0-va-bgk"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="MyColorSet"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="7N9-cT-3jc" secondAttribute="bottom" id="1cJ-fQ-4aZ"/>
-                            <constraint firstItem="7N9-cT-3jc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QW8-h8-hcN"/>
-                            <constraint firstItem="7N9-cT-3jc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XGh-Ep-F51"/>
-                            <constraint firstItem="7N9-cT-3jc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dsQ-fC-7Dc"/>
+                            <constraint firstItem="Boj-TE-pou" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8UO-mT-dTg"/>
+                            <constraint firstItem="Boj-TE-pou" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MaD-q4-9hT"/>
+                            <constraint firstItem="Boj-TE-pou" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="avh-32-9Uf"/>
+                            <constraint firstAttribute="bottom" secondItem="Boj-TE-pou" secondAttribute="bottom" id="i5Q-Ly-wGc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="To do List" id="4Zi-yK-FQ8"/>
@@ -200,17 +182,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="plus.circle" catalog="system" width="128" height="121"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
         <namedColor name="MyColorSet">
             <color red="0.79000002145767212" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TaskColorSet">
             <color red="0.55400002002716064" green="1" blue="0.81800001859664917" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

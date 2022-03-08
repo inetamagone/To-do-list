@@ -16,21 +16,60 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView?.dataSource = self
+        tableView?.delegate = self
+        setNavBar()
     }
     
     func configure(mainViewModel: MainViewModel) {
         self.mainViewModel = mainViewModel
     }
     
-    @IBAction func addTask(_ sender: Any) {
+    @objc func addTask() {
         mainViewModel?.shouldOpenTaskViewController()
     }
     
-    @IBAction func deleteTasks(_ sender: Any) {
-        mainViewModel?.deleteAllTasks()
+    @objc func deleteTasks() {
+        deleteAllTasks()
     }
+    
+    func reloadTableView() {
+        self.tableView.reloadData()
+    }
+    
+    func deleteAllTasks() {
+        if taskManager.tasks.count != 0 {
+            let alertController = UIAlertController(title: "Delete All Tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
+            let addActionButton = UIAlertAction(title: "Delete", style: .destructive) { action in
+                self.deleteAll()
+            }
+            
+            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertController.addAction(addActionButton)
+            alertController.addAction(cancelButton)
+            
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            taskManager.reloadTableView(tableView: tableView)
+        }
+    }
+    
+    func deleteAll() {
+        taskManager.tasks.removeAll()
+        taskManager.reloadTableView(tableView: tableView)
+    }
+    
+    func setNavBar() {
+        self.navigationItem.title = "To Do List"
+        let plusItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addTask))
+        plusItem.tintColor = .black
+        self.navigationItem.rightBarButtonItem = plusItem
+        let trashItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(deleteTasks))
+        trashItem.tintColor = .black
+        self.navigationItem.leftBarButtonItem = trashItem
+    }
+    
 }
 
 extension ViewController: UITableViewDataSource {

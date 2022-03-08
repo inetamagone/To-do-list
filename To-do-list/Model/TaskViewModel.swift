@@ -20,7 +20,7 @@ class TaskViewModel {
     func userDefaultsRefresh(title: String, description: String) {
         let taskDictionnary = ["title": title, "description": description]
         UserDefaults.standard.set(taskDictionnary, forKey: "newTask")
-        refreshMainViewController()
+        //refreshMainViewController()
     }
     
 }
