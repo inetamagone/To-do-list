@@ -10,24 +10,25 @@ import UIKit
 class MainViewModel {
     
     let taskManager = TaskManager()
+    var taskData: [TaskManager.Task]?
     
     var onOpenTaskViewController: (() -> Void)?
     func shouldOpenTaskViewController() {
         self.onOpenTaskViewController?()
     }
-    
-    func addTask() {
-        
+    // AppDelegate
+    func addTask(taskData: [TaskManager.Task]) {
+        self.taskData = taskData
     }
     
-    func getTask(index: Int) -> TaskManager.Task {
-        return taskManager.tasks[index]
+    func getTask(index: Int) -> TaskManager.Task? {
+        return taskData?[index]
     }
     
     func deleteAllTasks() {
-        if taskManager.tasks.count != 0 {
+        if taskData?.count != 0 {
+            taskData?.removeAll()
             taskManager.tasks.removeAll()
-            // Need to reloadTableView
         } else {
             return
         }

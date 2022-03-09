@@ -28,12 +28,12 @@ class ViewController: UIViewController {
     }
     
     @objc func addTask() {
-        mainViewModel?.addTask()
         mainViewModel?.shouldOpenTaskViewController()
     }
     
     @objc func deleteTasks() {
         mainViewModel?.deleteAllTasks()
+        reloadTableView()
     }
     
     func setNavBar() {
@@ -50,13 +50,13 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainViewModel?.taskManager.tasks.count ?? 0
+        return mainViewModel?.taskData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as? TableViewCell else {return .init()}
-        cell.titleLabel.text = mainViewModel?.getTask(index: indexPath.row).title
-        cell.descriptionLabel.text = mainViewModel?.getTask(index: indexPath.row).description
+        cell.titleLabel.text = mainViewModel?.getTask(index: indexPath.row)?.title
+        cell.descriptionLabel.text = mainViewModel?.getTask(index: indexPath.row)?.description
         
         return cell
     }
