@@ -14,16 +14,4 @@ class TaskManager {
         var description: String
         var completed: Bool
     }
-    
-    var tasks: [Task] = []
-    
-    // Called in MainViewModel, refresh()
-    func addOneTask(title: String, description: String) {
-        tasks.append(Task(title: title, description: description, completed: false))
-    }
-    
-    func reloadTableView(tableView: UITableView) {
-        tableView.reloadData()
-    }
-    
 }

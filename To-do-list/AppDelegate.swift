@@ -27,11 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         controller.configure(mainViewModel: mainViewModel)
         
-        // This must happen inside the next function taskViewModel.onRefresh - mainViewModel.refresh() to reload tableView before returning to it
-//        mainViewModel.onReloadTableView = { [ weak self ] in
-//            controller.reloadTableView()
-//        }
-        
         taskViewModel.onRefresh = { [ weak self ] in
             mainViewModel.refresh()
             navigationController.popToRootViewController(animated: true)

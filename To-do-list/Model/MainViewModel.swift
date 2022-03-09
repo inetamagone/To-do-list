@@ -12,28 +12,35 @@ class MainViewModel {
     private let viewController = ViewController()
     private let taskManager = TaskManager()
     
+    var tasks: [TaskManager.Task] = []
+    
     var onOpenTaskViewController: (() -> Void)?
     func shouldOpenTaskViewController() {
         self.onOpenTaskViewController?()
-    }
-    
-    var onReloadTableView: (() -> Void)?
-    func shouldReloadTableView() {
-        self.onReloadTableView?()
     }
     
     func refresh() {
         let taskDictionnary = UserDefaults.standard.object(forKey: "newTask") as? [String: String] ?? [String: String]()
         guard let titleString = taskDictionnary["title"] else { return }
         guard let descriptionString = taskDictionnary["description"] else { return }
-        taskManager.addOneTask(title: titleString, description: descriptionString)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
-        //viewController.refreshTableView()
-        //shouldReloadTableView() // // Doen't works to reload tableView when this func in MainViewModel
+        addOneTask(title: titleString, description: descriptionString)
+        viewController.reloadTableView()
     }
     
-    func deleteAll() {
-        taskManager.tasks.removeAll()
-        //shouldReloadTableView()
+    func addOneTask(title: String, description: String) {
+        tasks.append(TaskManager.Task(title: title, description: description, completed: false))
+    }
+    
+    func getTask(index: Int) -> TaskManager.Task {
+        return tasks[index]
+    }
+    
+    func deleteAllTasks() {
+        if tasks.count != 0 {
+            tasks.removeAll()
+            viewController.reloadTableView()
+        } else {
+            viewController.reloadTableView()
+        }
     }
 }
