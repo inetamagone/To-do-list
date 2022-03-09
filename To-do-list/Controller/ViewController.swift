@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshTableView), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         tableView?.dataSource = self
         tableView?.delegate = self
         setNavBar()
@@ -23,6 +24,11 @@ class ViewController: UIViewController {
     
     func configure(mainViewModel: MainViewModel) {
         self.mainViewModel = mainViewModel
+    }
+    
+    // NotificationCenter
+    @objc func refreshTableView() {
+        self.tableView?.reloadData()
     }
     
     @objc func addTask() {
@@ -41,7 +47,8 @@ class ViewController: UIViewController {
         if taskManager.tasks.count != 0 {
             let alertController = UIAlertController(title: "Delete All Tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
             let addActionButton = UIAlertAction(title: "Delete", style: .destructive) { action in
-                self.deleteAll()
+                self.mainViewModel?.deleteAll()
+                //self.deleteAll()
             }
             
             let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -55,10 +62,18 @@ class ViewController: UIViewController {
         }
     }
     
-    func deleteAll() {
-        taskManager.tasks.removeAll()
-        taskManager.reloadTableView(tableView: tableView)
-    }
+//    func refresh() {
+//        let taskDictionnary = UserDefaults.standard.object(forKey: "newTask") as? [String: String] ?? [String: String]()
+//        guard let titleString = taskDictionnary["title"] else { return }
+//        guard let descriptionString = taskDictionnary["description"] else { return }
+//        taskManager.addOneTask(title: titleString, description: descriptionString)
+//        mainViewModel?.shouldReloadTableView() // Works to reload tableView when this func in ViewController
+//    }
+    
+//    func deleteAll() {
+//        taskManager.tasks.removeAll()
+//        taskManager.reloadTableView(tableView: tableView)
+//    }
     
     func setNavBar() {
         self.navigationItem.title = "To Do List"
@@ -88,6 +103,7 @@ extension ViewController: UITableViewDataSource {
         
         return cell
     }
+    
 }
 
 extension ViewController: UITableViewDelegate {

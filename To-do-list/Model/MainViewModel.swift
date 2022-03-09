@@ -27,6 +27,13 @@ class MainViewModel {
         guard let titleString = taskDictionnary["title"] else { return }
         guard let descriptionString = taskDictionnary["description"] else { return }
         taskManager.addOneTask(title: titleString, description: descriptionString)
-        shouldReloadTableView()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
+        //viewController.refreshTableView()
+        //shouldReloadTableView() // // Doen't works to reload tableView when this func in MainViewModel
+    }
+    
+    func deleteAll() {
+        taskManager.tasks.removeAll()
+        //shouldReloadTableView()
     }
 }

@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let controller = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else { return false }
-        //let tableView = controller.tableView.reloadData()
         let mainViewModel = MainViewModel()
         
         guard let taskController = storyboard.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return false }
@@ -28,9 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         controller.configure(mainViewModel: mainViewModel)
         
-        mainViewModel.onReloadTableView = { [ weak self ] in
-            controller.reloadTableView()
-        }
+        // This must happen inside the next function taskViewModel.onRefresh - mainViewModel.refresh() to reload tableView before returning to it
+//        mainViewModel.onReloadTableView = { [ weak self ] in
+//            controller.reloadTableView()
+//        }
         
         taskViewModel.onRefresh = { [ weak self ] in
             mainViewModel.refresh()
