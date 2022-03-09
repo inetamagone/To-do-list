@@ -46,8 +46,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let title = titleField.text, !title.isEmpty else { return }
         guard let description = descriptionField.text, !description.isEmpty else { return }
-        taskViewModel?.userDefaultsRefresh(title: title, description: description)
-        taskViewModel?.refreshMainViewController()
+        taskViewModel?.saveTask(title: title, description: description)
     }
     
 }

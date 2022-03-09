@@ -11,15 +11,16 @@ class TaskViewModel {
     
     private let taskManager = TaskManager()
     
+    var tasks: [TaskManager.Task] = []
+    
     var onRefresh: (() -> Void)?
     
     func refreshMainViewController() {
         self.onRefresh?()
     }
     
-    func userDefaultsRefresh(title: String, description: String) {
-        let taskDictionnary = ["title": title, "description": description]
-        UserDefaults.standard.set(taskDictionnary, forKey: "newTask")
+    func saveTask(title: String, description: String) {
+        tasks.append(TaskManager.Task(title: title, description: description, completed: false))
     }
     
 }

@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController {
     
     private var mainViewModel: MainViewModel?
-    private let taskManager = TaskManager()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,6 +28,7 @@ class ViewController: UIViewController {
     }
     
     @objc func addTask() {
+        mainViewModel?.addTask()
         mainViewModel?.shouldOpenTaskViewController()
     }
     

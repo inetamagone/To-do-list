@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         controller.configure(mainViewModel: mainViewModel)
         
         taskViewModel.onRefresh = { [ weak self ] in
-            mainViewModel.refresh()
+            
             navigationController.popToRootViewController(animated: true)
         }
         taskController.configure(taskViewModel: taskViewModel)
