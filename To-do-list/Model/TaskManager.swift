@@ -14,4 +14,6 @@ class TaskManager {
         var description: String
         var completed: Bool
     }
+    
+    var tasks: [Task] = []
 }

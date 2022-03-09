@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewModel {
     
-    var tasks: [TaskManager.Task] = []
+    let taskManager = TaskManager()
     
     var onOpenTaskViewController: (() -> Void)?
     func shouldOpenTaskViewController() {
@@ -21,12 +21,13 @@ class MainViewModel {
     }
     
     func getTask(index: Int) -> TaskManager.Task {
-        return tasks[index]
+        return taskManager.tasks[index]
     }
     
     func deleteAllTasks() {
-        if tasks.count != 0 {
-            tasks.removeAll()
+        if taskManager.tasks.count != 0 {
+            taskManager.tasks.removeAll()
+            // Need to reloadTableView
         } else {
             return
         }

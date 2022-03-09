@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         controller.configure(mainViewModel: mainViewModel)
         
-        taskViewModel.onRefresh = { [ weak self ] in
-            
+        taskViewModel.onReturn = { [ weak self ] in
+            controller.reloadTableView()
             navigationController.popToRootViewController(animated: true)
         }
         taskController.configure(taskViewModel: taskViewModel)

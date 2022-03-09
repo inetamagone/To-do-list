@@ -47,6 +47,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         guard let title = titleField.text, !title.isEmpty else { return }
         guard let description = descriptionField.text, !description.isEmpty else { return }
         taskViewModel?.saveTask(title: title, description: description)
+        taskViewModel?.returnToMainViewController()
     }
     
 }

@@ -9,18 +9,15 @@ import UIKit
 
 class TaskViewModel {
     
-    private let taskManager = TaskManager()
+    let taskManager = TaskManager()
     
-    var tasks: [TaskManager.Task] = []
-    
-    var onRefresh: (() -> Void)?
-    
-    func refreshMainViewController() {
-        self.onRefresh?()
+    var onReturn: (() -> Void)?
+    func returnToMainViewController() {
+        self.onReturn?()
     }
     
     func saveTask(title: String, description: String) {
-        tasks.append(TaskManager.Task(title: title, description: description, completed: false))
+        taskManager.tasks.append(TaskManager.Task(title: title, description: description, completed: false))
     }
     
 }
