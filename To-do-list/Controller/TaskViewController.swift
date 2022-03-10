@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TaskViewController.swift
 //  To-do-list
 //
 //  Created by ineta.magone on 03/03/2022.
@@ -22,7 +22,10 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         super.viewDidLoad()
         self.titleField.delegate = self
         self.descriptionField.delegate = self
-        taskViewModel?.setupTextFieldAppearence(titleField: titleField, descriptionField: descriptionField)
+        titleField.placeholder = "Task title"
+        titleField.becomeFirstResponder()
+        descriptionField.text = "description..."
+        descriptionField.textColor = UIColor.lightGray
     }
     
     internal func textViewDidBeginEditing(_ textView: UITextView) {
@@ -43,8 +46,6 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         guard let title = titleField.text, !title.isEmpty else { return }
         guard let description = descriptionField.text, !description.isEmpty else { return }
         taskViewModel?.saveTask(title: title, description: description)
-        taskViewModel?.setupTextFieldAppearence(titleField: titleField, descriptionField: descriptionField)
-        taskViewModel?.returnToMainViewController()
     }
     
 }

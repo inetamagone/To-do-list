@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var mainViewModel: MainViewModel?
+    private var viewModel: ViewModel?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,27 +23,27 @@ class ViewController: UIViewController {
         self.tableView?.reloadData()
     }
     
-    func configure(mainViewModel: MainViewModel) {
-        self.mainViewModel = mainViewModel
+    func configure(viewModel: ViewModel) {
+        self.viewModel = viewModel
     }
     
     @objc func addTask() {
-        mainViewModel?.shouldOpenTaskViewController()
+        viewModel?.shouldOpenTaskViewController()
     }
     
     @objc func deleteTasks() {
-        mainViewModel?.deleteAllTasks()
-        mainViewModel?.shouldDeleteTaskManagerTasks()
+        viewModel?.deleteAllTasks()
         reloadTableView()
     }
     
     func setNavBar() {
+        self.navigationController?.navigationBar.backgroundColor = UIColor.secondarySystemBackground
         self.navigationItem.title = "To Do List"
         let plusItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addTask))
-        plusItem.tintColor = .black
+        plusItem.tintColor = .systemIndigo
         self.navigationItem.rightBarButtonItem = plusItem
         let trashItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(deleteTasks))
-        trashItem.tintColor = .black
+        trashItem.tintColor = .systemIndigo
         self.navigationItem.leftBarButtonItem = trashItem
     }
 }
@@ -51,15 +51,30 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainViewModel?.taskData?.count ?? 0
+        return viewModel?.taskCount() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as? TableViewCell else {return .init()}
-        cell.titleLabel.text = mainViewModel?.getTask(index: indexPath.row)?.title
-        cell.descriptionLabel.text = mainViewModel?.getTask(index: indexPath.row)?.description
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as? TableViewCell else { return .init() }
+        
+        let task = viewModel?.getTask(index: indexPath.row)
+        
+        cell.titleLabel.text = task?.title
+        cell.descriptionLabel.text = task?.description
         
         return cell
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    
+    // Deleting only one task by swiping
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.viewModel?.removeRow(index: indexPath.row)
+            self.tableView?.deleteRows(at: [indexPath], with: .automatic)
+        }
+        reloadTableView()
     }
 }
 

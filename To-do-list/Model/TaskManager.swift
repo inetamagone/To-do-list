@@ -17,4 +17,7 @@ class TaskManager {
     
     var tasks: [Task] = []
     
+    static var shared = TaskManager()
+
+    private init() {}
 }
