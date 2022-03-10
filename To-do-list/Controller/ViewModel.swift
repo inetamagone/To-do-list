@@ -31,4 +31,17 @@ class ViewModel {
     func removeRow(index: Int) -> TaskManager.Task {
         return (taskManager.tasks.remove(at: index))
     }
+    
+    func checkBool(index: Int) -> Bool {
+        return taskManager.tasks[index].completed
+    }
+    
+    func boolChange(index: Int) -> Bool {
+        if taskManager.tasks[index].completed == false {
+            taskManager.tasks[index].completed = true
+        } else {
+            taskManager.tasks[index].completed = false
+        }
+        return taskManager.tasks[index].completed
+    }
 }

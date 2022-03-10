@@ -62,6 +62,9 @@ extension ViewController: UITableViewDataSource {
         cell.titleLabel.text = task?.title
         cell.descriptionLabel.text = task?.description
         
+        // Checkmarks
+        cell.accessoryType = viewModel?.checkBool(index: indexPath.row) ?? false ? .checkmark : .none
+        
         return cell
     }
 }
@@ -74,6 +77,12 @@ extension ViewController: UITableViewDelegate {
             self.viewModel?.removeRow(index: indexPath.row)
             self.tableView?.deleteRows(at: [indexPath], with: .automatic)
         }
+        reloadTableView()
+    }
+    
+    // Checkmarks
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.boolChange(index: indexPath.row)
         reloadTableView()
     }
 }
