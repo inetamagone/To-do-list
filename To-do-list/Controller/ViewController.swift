@@ -9,94 +9,57 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    private var mainViewModel: MainViewModel?
     
-    private let taskManager = TaskManager()
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView?.dataSource = self
+        setNavBar()
     }
     
-    func refresh() {
-        let taskDictionnary = UserDefaults.standard.object(forKey: "newTask") as? [String: String] ?? [String: String]()
-        guard let titleString = taskDictionnary["title"] else { return }
-        guard let descriptionString = taskDictionnary["description"] else { return }
-        taskManager.addTask(title: titleString, description: descriptionString)
-        
-        taskManager.reloadTableView(tableView: tableView)
+    func reloadTableView() {
+        self.tableView?.reloadData()
     }
     
-    func openTaskEdition() {
-        guard let taskViewController = storyboard?.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return }
-        
-        taskViewController.completionHandler = {
-            self.refresh()
-        }
-        navigationController?.pushViewController(taskViewController.self, animated: true)
+    func configure(mainViewModel: MainViewModel) {
+        self.mainViewModel = mainViewModel
     }
     
-    func deleteAll() {
-        taskManager.tasks.removeAll()
-        taskManager.reloadTableView(tableView: tableView)
+    @objc func addTask() {
+        mainViewModel?.shouldOpenTaskViewController()
     }
     
-    @IBAction func addTask(_ sender: Any) {
-        openTaskEdition()
+    @objc func deleteTasks() {
+        mainViewModel?.deleteAllTasks()
+        mainViewModel?.shouldDeleteTaskManagerTasks()
+        reloadTableView()
     }
     
-    @IBAction func deleteTasks(_ sender: Any) {
-        if taskManager.tasks.count != 0 {
-            let alertController = UIAlertController(title: "Delete All Tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
-            let addActionButton = UIAlertAction(title: "Delete", style: .destructive) { action in
-                self.deleteAll()
-            }
-            
-            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alertController.addAction(addActionButton)
-            alertController.addAction(cancelButton)
-            
-            present(alertController, animated: true, completion: nil)
-        } else {
-            taskManager.reloadTableView(tableView: tableView)
-        }
+    func setNavBar() {
+        self.navigationItem.title = "To Do List"
+        let plusItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addTask))
+        plusItem.tintColor = .black
+        self.navigationItem.rightBarButtonItem = plusItem
+        let trashItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(deleteTasks))
+        trashItem.tintColor = .black
+        self.navigationItem.leftBarButtonItem = trashItem
     }
-    
 }
 
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskManager.tasks.count
+        return mainViewModel?.taskData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as? TableViewCell else {return .init()}
-        cell.titleLabel.text = taskManager.tasks[indexPath.row].title
-        cell.descriptionLabel.text = taskManager.tasks[indexPath.row].description
-        
-        // Checkmarks
-        cell.accessoryType = taskManager.tasks[indexPath.row].completed ? .checkmark : .none
+        cell.titleLabel.text = mainViewModel?.getTask(index: indexPath.row)?.title
+        cell.descriptionLabel.text = mainViewModel?.getTask(index: indexPath.row)?.description
         
         return cell
     }
 }
 
-extension ViewController: UITableViewDelegate {
-    
-    // Deleting only one task by swiping
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.taskManager.tasks.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        taskManager.reloadTableView(tableView: self.tableView)
-    }
-    // Checkmarks
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        taskManager.tasks[indexPath.row].completed = !taskManager.tasks[indexPath.row].completed
-        taskManager.reloadTableView(tableView: self.tableView)
-    }
-}

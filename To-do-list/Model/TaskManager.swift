@@ -9,8 +9,6 @@ import UIKit
 
 class TaskManager {
     
-    // MARK: - Structure
-    
     struct Task {
         var title: String
         var description: String
@@ -18,17 +16,5 @@ class TaskManager {
     }
     
     var tasks: [Task] = []
-    
-    // MARK: - Methods
-    
-    // ViewController
-    func reloadTableView(tableView: UITableView) {
-        tableView.reloadData()
-    }
-    
-    // TaskViewController
-    func addTask(title: String, description: String) {
-        tasks.append(Task(title: title, description: description, completed: false))
-    }
     
 }

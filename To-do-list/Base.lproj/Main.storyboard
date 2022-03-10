@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PHI-aj-i4A">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Boj-TE-pou">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" name="MyColorSet"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="wZQ-Jq-mvc" customClass="TableViewCell" customModule="To_do_list" customModuleProvider="target">
@@ -44,6 +44,12 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="uMP-jr-zLU" firstAttribute="top" secondItem="d9E-Yq-mOJ" secondAttribute="top" id="7fN-Q0-jg8"/>
+                                                        <constraint firstAttribute="bottom" secondItem="NLS-jr-e6L" secondAttribute="bottom" id="Vmv-ZK-AWy"/>
+                                                        <constraint firstItem="NLS-jr-e6L" firstAttribute="top" secondItem="d9E-Yq-mOJ" secondAttribute="top" id="jeB-IZ-Wgu"/>
+                                                        <constraint firstAttribute="bottom" secondItem="uMP-jr-zLU" secondAttribute="bottom" id="saQ-RA-m8f"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -68,26 +74,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="MyColorSet"/>
                         <constraints>
-                            <constraint firstItem="Boj-TE-pou" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OY1-mD-atv"/>
-                            <constraint firstItem="Boj-TE-pou" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dpT-fB-EU1"/>
-                            <constraint firstAttribute="bottom" secondItem="Boj-TE-pou" secondAttribute="bottom" id="swP-j7-BwN"/>
-                            <constraint firstItem="Boj-TE-pou" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xss-Cg-Lpb"/>
+                            <constraint firstItem="Boj-TE-pou" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8UO-mT-dTg"/>
+                            <constraint firstItem="Boj-TE-pou" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MaD-q4-9hT"/>
+                            <constraint firstItem="Boj-TE-pou" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="avh-32-9Uf"/>
+                            <constraint firstAttribute="bottom" secondItem="Boj-TE-pou" secondAttribute="bottom" id="i5Q-Ly-wGc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="To do List" id="4Zi-yK-FQ8">
-                        <barButtonItem key="leftBarButtonItem" image="trash" catalog="system" id="9Bl-HH-GwJ">
-                            <color key="tintColor" systemColor="labelColor"/>
-                            <connections>
-                                <action selector="deleteTasks:" destination="BYZ-38-t0r" id="fja-lk-zST"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="hx6-o8-DlG">
-                            <color key="tintColor" systemColor="labelColor"/>
-                            <connections>
-                                <action selector="addTask:" destination="BYZ-38-t0r" id="YbP-T6-ZOG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="To do List" id="4Zi-yK-FQ8"/>
                     <connections>
                         <outlet property="tableView" destination="Boj-TE-pou" id="h6z-mk-4U6"/>
                     </connections>
@@ -187,37 +180,14 @@
             </objects>
             <point key="canvasLocation" x="893" y="84"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="W5C-TU-opD">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PHI-aj-i4A" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fqc-VP-MpY">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="duv-mW-4hL"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DV5-H7-hkJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-714" y="84"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="plus.circle" catalog="system" width="128" height="121"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
         <namedColor name="MyColorSet">
             <color red="0.79000002145767212" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TaskColorSet">
             <color red="0.55400002002716064" green="1" blue="0.81800001859664917" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
