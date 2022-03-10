@@ -20,4 +20,15 @@ class TaskViewModel {
         taskManager.tasks.append(TaskManager.Task(title: title, description: description, completed: false))
     }
     
+    func deleteTaskManagerTasks() {
+        taskManager.tasks.removeAll()
+    }
+    
+    func setupTextFieldAppearence(titleField: UITextField, descriptionField: UITextView) {
+        titleField.text = ""
+        titleField.placeholder = "Task title"
+        titleField.becomeFirstResponder()
+        descriptionField.text = "description..."
+        descriptionField.textColor = UIColor.lightGray
+    }
 }

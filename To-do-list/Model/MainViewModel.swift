@@ -16,6 +16,12 @@ class MainViewModel {
     func shouldOpenTaskViewController() {
         self.onOpenTaskViewController?()
     }
+    
+    var onDeleteAllTasks: (() -> Void)?
+    func shouldDeleteTaskManagerTasks() {
+        self.onDeleteAllTasks?()
+    }
+    
     // AppDelegate
     func addTask(taskData: [TaskManager.Task]) {
         self.taskData = taskData
@@ -28,7 +34,6 @@ class MainViewModel {
     func deleteAllTasks() {
         if taskData?.count != 0 {
             taskData?.removeAll()
-            taskManager.tasks.removeAll()
         } else {
             return
         }

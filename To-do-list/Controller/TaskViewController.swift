@@ -22,11 +22,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         super.viewDidLoad()
         self.titleField.delegate = self
         self.descriptionField.delegate = self
-        self.titleField.placeholder = "Task title"
-        titleField.becomeFirstResponder()
-        descriptionField.text = "description..."
-        descriptionField.textColor = UIColor.lightGray
-        
+        taskViewModel?.setupTextFieldAppearence(titleField: titleField, descriptionField: descriptionField)
     }
     
     internal func textViewDidBeginEditing(_ textView: UITextView) {
@@ -47,6 +43,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         guard let title = titleField.text, !title.isEmpty else { return }
         guard let description = descriptionField.text, !description.isEmpty else { return }
         taskViewModel?.saveTask(title: title, description: description)
+        taskViewModel?.setupTextFieldAppearence(titleField: titleField, descriptionField: descriptionField)
         taskViewModel?.returnToMainViewController()
     }
     

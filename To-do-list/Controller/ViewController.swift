@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     
     @objc func deleteTasks() {
         mainViewModel?.deleteAllTasks()
+        mainViewModel?.shouldDeleteTaskManagerTasks()
         reloadTableView()
     }
     

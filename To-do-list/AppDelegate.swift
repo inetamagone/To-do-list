@@ -34,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         taskController.configure(taskViewModel: taskViewModel)
         
+        mainViewModel.onDeleteAllTasks = { [ weak self ] in
+            taskViewModel.deleteTaskManagerTasks()
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
