@@ -84,7 +84,7 @@ extension ViewController: UITableViewDataSource {
         cell.descriptionLabel.text = task?.description
         
         // Checkmarks
-        cell.accessoryType = viewModel?.checkBool(index: indexPath.row) ?? false ? .checkmark : .none
+        //cell.accessoryType = viewModel?.checkBool(index: indexPath.row) ?? false ? .checkmark : .none
         
         return cell
     }
@@ -132,10 +132,9 @@ extension ViewController: UITableViewDelegate {
         reloadTableView()
     }
     
-    // Checkmarks
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel?.boolChange(index: indexPath.row)
-        reloadTableView()
+        viewModel?.openEditViewController()
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC267DA727DB548300DB2D01 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC267DA627DB548300DB2D01 /* EditViewController.swift */; };
 		FCEE43A927D0ABB20073AE7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEE43A827D0ABB20073AE7E /* AppDelegate.swift */; };
 		FCEE43AD27D0ABB20073AE7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEE43AC27D0ABB20073AE7E /* ViewController.swift */; };
 		FCEE43B027D0ABB20073AE7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCEE43AE27D0ABB20073AE7E /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC267DA627DB548300DB2D01 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		FCEE43A527D0ABB20073AE7E /* To-do-list.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "To-do-list.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEE43A827D0ABB20073AE7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCEE43AC27D0ABB20073AE7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				FCEF8F5E27D5EC65008BF6C8 /* ViewModel.swift */,
 				FCEE43BF27D0BE700073AE7E /* TaskViewController.swift */,
 				FCEF8F6027D5EC88008BF6C8 /* TaskViewModel.swift */,
+				FC267DA627DB548300DB2D01 /* EditViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC267DA727DB548300DB2D01 /* EditViewController.swift in Sources */,
 				FCEE43C027D0BE700073AE7E /* TaskViewController.swift in Sources */,
 				FCEF8F5F27D5EC65008BF6C8 /* ViewModel.swift in Sources */,
 				FCEE43AD27D0ABB20073AE7E /* ViewController.swift in Sources */,

@@ -34,6 +34,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let taskController = self.createTaskViewController(controller: controller)
             self.navigationController?.pushViewController(taskController, animated: true)
         }
+        viewModel.onOpenEditViewController = { [ weak self ] in
+            guard let self = self else { return }
+            let taskModel = TaskViewModel()
+            let taskController = self.createTaskViewController(controller: controller)
+            
+            let editController = EditViewController()
+            taskController.addChild(editController)
+            
+            taskModel.showEditViewController(taskViewController: taskController, editViewController: editController)
+            
+            self.navigationController?.pushViewController(taskController, animated: true)
+        }
         controller.configure(viewModel: viewModel)
 
         return controller

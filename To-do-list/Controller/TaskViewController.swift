@@ -13,6 +13,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBOutlet weak var descriptionField: UITextView!
     
     private var taskViewModel: TaskViewModel?
+    let editViewController = EditViewController()
     
     func configure(taskViewModel: TaskViewModel) {
         self.taskViewModel = taskViewModel

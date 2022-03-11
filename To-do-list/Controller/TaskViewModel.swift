@@ -25,4 +25,11 @@ class TaskViewModel {
     func deleteTaskManagerTasks() {
         taskManager.tasks = []
     }
+    // AppDelegate onOpenEditViewController
+    func showEditViewController(taskViewController: UIViewController, editViewController: UIViewController) {
+        taskViewController.view.addSubview(editViewController.view)
+        editViewController.didMove(toParent: taskViewController)
+        editViewController.view.frame = taskViewController.view.bounds
+        editViewController.view.isHidden = false
+    }
 }
