@@ -32,8 +32,7 @@ class ViewController: UIViewController {
     }
     
     @objc func deleteTasks() {
-        viewModel?.deleteAllTasks()
-        reloadTableView()
+        deleteAlertMessage()
     }
     
     func setNavBar() {
@@ -46,11 +45,26 @@ class ViewController: UIViewController {
         trashItem.tintColor = .systemIndigo
         self.navigationItem.leftBarButtonItem = trashItem
     }
+    
+    func deleteAlertMessage() {
+        if viewModel?.taskCount() != 0 {
+            let alertController = UIAlertController(title: "Delete All tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
+            viewModel?.setupAlertMessage(alertController: alertController)
+            present(alertController, animated: true, completion: nil)
+        } else {
+            self.reloadTableView()
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel?.taskCount() == 0 {
+            setEmptyView()
+        } else if viewModel?.taskCount() ?? 0 > 0 {
+            viewModel?.restoreView(tableView: tableView)
+        }
         return viewModel?.taskCount() ?? 0
     }
     
@@ -66,6 +80,15 @@ extension ViewController: UITableViewDataSource {
         cell.accessoryType = viewModel?.checkBool(index: indexPath.row) ?? false ? .checkmark : .none
         
         return cell
+    }
+    
+    // Message appears when there are no tasks
+    func setEmptyView() {
+        let emptyView = UIView(frame: CGRect(x: tableView?.center.x ?? 0, y: tableView?.center.y ?? 0, width: tableView?.bounds.size.width ?? 0, height: tableView?.bounds.size.height ?? 0))
+        let titleLabel = UILabel()
+        let messageLabel = UILabel()
+        viewModel?.setEmptyViewAppearence(emptyView: emptyView, titleLabel: titleLabel, messageLabel: messageLabel)
+        self.tableView.backgroundView = emptyView
     }
 }
 
