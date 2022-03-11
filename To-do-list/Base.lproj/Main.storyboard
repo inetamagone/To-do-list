@@ -107,10 +107,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="HHU-uw-kI9">
-                                        <rect key="frame" x="0.0" y="60" width="414" height="240"/>
+                                        <rect key="frame" x="30" y="60" width="354" height="240"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ld3-fP-dgp">
-                                                <rect key="frame" x="12" y="0.0" width="390" height="50"/>
+                                                <rect key="frame" x="12" y="0.0" width="330" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Q8u-68-uvs"/>
                                                 </constraints>
@@ -118,7 +118,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08I-MT-fSU">
-                                                <rect key="frame" x="12" y="62" width="390" height="116"/>
+                                                <rect key="frame" x="12" y="62" width="330" height="116"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -129,7 +129,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZM-w4-JrZ">
-                                                <rect key="frame" x="157" y="190" width="100" height="50"/>
+                                                <rect key="frame" x="127" y="190" width="100" height="50"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="15Y-rt-tIs"/>
@@ -158,8 +158,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="BaI-PX-fKI"/>
-                                    <constraint firstItem="HHU-uw-kI9" firstAttribute="leading" secondItem="K3v-Ft-MQU" secondAttribute="leading" id="buZ-xp-I7d"/>
-                                    <constraint firstAttribute="trailing" secondItem="HHU-uw-kI9" secondAttribute="trailing" id="uvf-oo-DZe"/>
+                                    <constraint firstItem="HHU-uw-kI9" firstAttribute="leading" secondItem="K3v-Ft-MQU" secondAttribute="leading" constant="30" id="buZ-xp-I7d"/>
+                                    <constraint firstAttribute="trailing" secondItem="HHU-uw-kI9" secondAttribute="trailing" constant="30" id="uvf-oo-DZe"/>
                                 </constraints>
                             </stackView>
                         </subviews>

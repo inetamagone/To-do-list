@@ -34,9 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let taskController = self.createTaskViewController(controller: controller)
             self.navigationController?.pushViewController(taskController, animated: true)
         }
-        viewModel.onDeleteAll = { [ weak self ] in
-            controller.reloadTableView()
-        }
         controller.configure(viewModel: viewModel)
 
         return controller

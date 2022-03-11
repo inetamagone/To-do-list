@@ -32,7 +32,11 @@ class ViewController: UIViewController {
     }
     
     @objc func deleteTasks() {
-        deleteAlertMessage()
+        if viewModel?.taskCount() != 0 {
+            deleteAlertMessage()
+        } else {
+            reloadTableView()
+        }
     }
     
     func setNavBar() {
@@ -47,13 +51,16 @@ class ViewController: UIViewController {
     }
     
     func deleteAlertMessage() {
-        if viewModel?.taskCount() != 0 {
-            let alertController = UIAlertController(title: "Delete All tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
-            viewModel?.setupAlertMessage(alertController: alertController)
-            present(alertController, animated: true, completion: nil)
-        } else {
+        let alertController = UIAlertController(title: "Delete All tasks?", message: "Do you want to delete them all?", preferredStyle: .actionSheet)
+        let addActionButton = UIAlertAction(title: "Delete", style: .destructive) { action in
+            self.viewModel?.deleteAllTasks()
             self.reloadTableView()
         }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(addActionButton)
+        alertController.addAction(cancelButton)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -63,7 +70,7 @@ extension ViewController: UITableViewDataSource {
         if viewModel?.taskCount() == 0 {
             setEmptyView()
         } else if viewModel?.taskCount() ?? 0 > 0 {
-            viewModel?.restoreView(tableView: tableView)
+            restoreView()
         }
         return viewModel?.taskCount() ?? 0
     }
@@ -87,8 +94,30 @@ extension ViewController: UITableViewDataSource {
         let emptyView = UIView(frame: CGRect(x: tableView?.center.x ?? 0, y: tableView?.center.y ?? 0, width: tableView?.bounds.size.width ?? 0, height: tableView?.bounds.size.height ?? 0))
         let titleLabel = UILabel()
         let messageLabel = UILabel()
-        viewModel?.setEmptyViewAppearence(emptyView: emptyView, titleLabel: titleLabel, messageLabel: messageLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptyView.addSubview(titleLabel)
+        emptyView.addSubview(messageLabel)
+        NSLayoutConstraint.activate([
+            titleLabel.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor, constant: -150),
+            titleLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
+            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            messageLabel.leadingAnchor.constraint(equalTo: emptyView.leadingAnchor, constant: 20),
+            messageLabel.trailingAnchor.constraint(equalTo: emptyView.trailingAnchor, constant: -20),
+        ])
+        titleLabel.textColor = UIColor.black
+        titleLabel.font = UIFont(name: "Helvetica Neue Bold", size: 18)
+        titleLabel.text = "You don't have any tasks"
+        messageLabel.textColor = UIColor.gray
+        messageLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+        messageLabel.text = "You can add tasks by pressing on the +  button"
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
         self.tableView.backgroundView = emptyView
+    }
+    
+    func restoreView() {
+        tableView.backgroundView = nil
     }
 }
 
