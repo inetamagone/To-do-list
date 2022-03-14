@@ -9,10 +9,15 @@ import UIKit
 
 class EditViewController: UIViewController {
 
+    private var editViewModel: EditViewModel?
+    
+    func configure(editModel: EditViewModel) {
+        self.editViewModel = editModel
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
-       
+        //view.backgroundColor = .red
     }
+    
     
 }

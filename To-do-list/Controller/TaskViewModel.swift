@@ -26,10 +26,16 @@ class TaskViewModel {
         taskManager.tasks = []
     }
     // AppDelegate onOpenEditViewController
-    func showEditViewController(taskViewController: UIViewController, editViewController: UIViewController) {
-        taskViewController.view.addSubview(editViewController.view)
-        editViewController.didMove(toParent: taskViewController)
-        editViewController.view.frame = taskViewController.view.bounds
-        editViewController.view.isHidden = false
+    func showEditViewController(taskController: UIViewController, editController: UIViewController) {
+        taskController.addChild(editController)
+        taskController.view.addSubview(editController.view)
+        editController.didMove(toParent: taskController)
+        editController.view.frame = taskController.view.bounds
     }
+    
+    
+//    func setEditControllerTitle(taskController: UIViewController) {
+//        taskController.viewTitle.text = "Edit Task"
+//    }
+    
 }

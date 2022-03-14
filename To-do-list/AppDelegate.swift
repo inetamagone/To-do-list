@@ -34,15 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let taskController = self.createTaskViewController(controller: controller)
             self.navigationController?.pushViewController(taskController, animated: true)
         }
+        
         viewModel.onOpenEditViewController = { [ weak self ] in
             guard let self = self else { return }
-            let taskModel = TaskViewModel()
             let taskController = self.createTaskViewController(controller: controller)
+            let taskModel = self.configureTaskModel(taskController: taskController as! TaskViewController)
+            let editController = self.createEditViewController()
             
-            let editController = EditViewController()
-            taskController.addChild(editController)
-            
-            taskModel.showEditViewController(taskViewController: taskController, editViewController: editController)
+            taskModel.showEditViewController(taskController: taskController, editController: editController)
             
             self.navigationController?.pushViewController(taskController, animated: true)
         }
@@ -53,14 +52,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func createTaskViewController(controller: ViewController) -> UIViewController {
         guard let taskController = storyboard.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return .init() }
-        let taskViewModel = TaskViewModel()
-        taskViewModel.onReturn = { [ weak self ] in
+        
+        let taskModel = self.configureTaskModel(taskController: taskController)
+        taskModel.onReturn = { [ weak self ] in
             controller.reloadTableView()
             self?.navigationController?.popViewController(animated: true)
         }
-        taskController.configure(taskViewModel: taskViewModel)
-        
         return taskController
+    }
+    
+    func configureTaskModel(taskController: TaskViewController) -> TaskViewModel {
+        let taskModel = TaskViewModel()
+        taskController.configure(taskModel: taskModel)
+        return taskModel
+    }
+    
+    func createEditViewController() -> UIViewController {
+        let editController = EditViewController()
+        let editModel = EditViewModel()
+        editController.configure(editModel: editModel)
+        return editController
     }
 }
 

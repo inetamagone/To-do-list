@@ -9,18 +9,20 @@ import UIKit
 
 class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
+    @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var descriptionField: UITextView!
     
     private var taskViewModel: TaskViewModel?
     let editViewController = EditViewController()
     
-    func configure(taskViewModel: TaskViewModel) {
-        self.taskViewModel = taskViewModel
+    func configure(taskModel: TaskViewModel) {
+        self.taskViewModel = taskModel
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewTitle.text = "Add a Task"
         self.titleField.delegate = self
         self.descriptionField.delegate = self
         titleField.placeholder = "Task title"
