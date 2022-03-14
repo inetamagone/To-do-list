@@ -9,5 +9,7 @@ import UIKit
 
 class EditViewModel {
     
+    private let taskManager = TaskManager.shared
     
+    // get row info here to display in EditController
 }

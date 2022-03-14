@@ -51,11 +51,11 @@ class TaskViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         taskViewModel?.saveTask(title: title, description: description)
     }
     
-    func showEditViewController(taskViewController: UIViewController, editViewController: UIViewController) {
-        self.addChild(editViewController)
-        self.view.addSubview(editViewController.view)
-        self.didMove(toParent: self)
-        self.view.frame = self.view.bounds
-    }
+//    func showEditViewController(taskViewController: UIViewController, editViewController: UIViewController) {
+//        self.addChild(editViewController)
+//        self.view.addSubview(editViewController.view)
+//        self.didMove(toParent: self)
+//        self.view.frame = self.view.bounds
+//    }
     
 }

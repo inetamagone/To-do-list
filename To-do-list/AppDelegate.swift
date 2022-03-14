@@ -9,13 +9,13 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     var storyboard = UIStoryboard(name: "Main", bundle: nil)
     var navigationController: UINavigationController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-      
+        
         let controller = createViewContorller()
         navigationController = UINavigationController(rootViewController: controller)
         
@@ -37,18 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         viewModel.onOpenEditViewController = { [ weak self ] in
             guard let self = self else { return }
-            let taskController = self.createTaskViewController(controller: controller)
-            
             let editController = self.createEditViewController()
-            taskController.showEditViewController(taskViewController: taskController, editViewController: editController)
-            
-            self.navigationController?.pushViewController(taskController, animated: true)
+            self.navigationController?.pushViewController(editController, animated: true)
         }
         controller.configure(viewModel: viewModel)
-
         return controller
     }
-
+    
     func createTaskViewController(controller: ViewController) -> TaskViewController {
         guard let taskController = storyboard.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return .init() }
         let taskModel = TaskViewModel()
