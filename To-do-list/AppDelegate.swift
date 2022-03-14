@@ -38,10 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         viewModel.onOpenEditViewController = { [ weak self ] in
             guard let self = self else { return }
             let taskController = self.createTaskViewController(controller: controller)
-            let taskModel = self.configureTaskModel(taskController: taskController as! TaskViewController)
-            let editController = self.createEditViewController()
             
-            taskModel.showEditViewController(taskController: taskController, editController: editController)
+            let editController = self.createEditViewController()
+            taskController.showEditViewController(taskViewController: taskController, editViewController: editController)
             
             self.navigationController?.pushViewController(taskController, animated: true)
         }
@@ -50,24 +49,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return controller
     }
 
-    func createTaskViewController(controller: ViewController) -> UIViewController {
+    func createTaskViewController(controller: ViewController) -> TaskViewController {
         guard let taskController = storyboard.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return .init() }
+        let taskModel = TaskViewModel()
         
-        let taskModel = self.configureTaskModel(taskController: taskController)
         taskModel.onReturn = { [ weak self ] in
             controller.reloadTableView()
             self?.navigationController?.popViewController(animated: true)
         }
+        taskController.configure(taskModel: taskModel)
         return taskController
     }
     
-    func configureTaskModel(taskController: TaskViewController) -> TaskViewModel {
-        let taskModel = TaskViewModel()
-        taskController.configure(taskModel: taskModel)
-        return taskModel
-    }
-    
-    func createEditViewController() -> UIViewController {
+    func createEditViewController() -> EditViewController {
         let editController = EditViewController()
         let editModel = EditViewModel()
         editController.configure(editModel: editModel)
