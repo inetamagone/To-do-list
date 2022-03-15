@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TaskViewModel {
+class BaseViewModel {
     
     private let taskManager = TaskManager.shared
     
@@ -15,6 +15,7 @@ class TaskViewModel {
     
     func saveTask(title: String, description: String) {
         addTasks(title: title, description: description)
+        print(taskManager.tasks)
         onReturn?()
     }
     

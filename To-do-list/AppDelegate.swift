@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var storyboard = UIStoryboard(name: "Main", bundle: nil)
     var navigationController: UINavigationController?
+    var baseModel = BaseViewModel()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -31,8 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewModel = ViewModel()
         viewModel.onOpenTaskViewController = { [ weak self ] in
             guard let self = self else { return }
+            let baseController = self.createBaseViewController()
             let taskController = self.createTaskViewController(controller: controller)
-            self.navigationController?.pushViewController(taskController, animated: true)
+            baseController.showSubViewController(viewController: taskController)
+            self.navigationController?.pushViewController(baseController, animated: true)
         }
         
         viewModel.onOpenEditViewController = { [ weak self ] in
@@ -44,25 +47,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return controller
     }
     
-    func createTaskViewController(controller: ViewController) -> TaskViewController {
-        guard let taskController = storyboard.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return .init() }
-        let taskModel = TaskViewModel()
+    func createBaseViewController() -> BaseViewController {
+        guard let baseController = storyboard.instantiateViewController(withIdentifier: "BaseViewController") as? BaseViewController else { return .init() }
         
-        taskModel.onReturn = { [ weak self ] in
+        //let baseModel = BaseViewModel()
+        //let taskController = TaskViewController()
+        //baseController.showSubViewController(viewController: taskController)
+        baseController.configure(baseModel: baseModel)
+        return baseController
+    }
+    
+    func createTaskViewController(controller: ViewController) -> UIViewController {
+//        let baseController = self.createBaseViewController()
+        let taskController = TaskViewController()
+        
+        baseModel.onReturn = { [ weak self ] in
             controller.reloadTableView()
             self?.navigationController?.popViewController(animated: true)
         }
-        taskController.configure(taskModel: taskModel)
         return taskController
     }
     
-    func createEditViewController() -> EditViewController {
+    func createEditViewController() -> UIViewController {
+        let baseController = self.createBaseViewController()
         let editController = EditViewController()
-        let editModel = EditViewModel()
-        editController.configure(editModel: editModel)
         return editController
     }
 }
 
-
+//    func createTaskViewController(controller: ViewController) -> TaskViewController {
+//        guard let taskController = storyboard.instantiateViewController(withIdentifier: "TaskViewController") as? TaskViewController else { return .init() }
+//        let taskModel = TaskViewModel()
+//
+//        taskModel.onReturn = { [ weak self ] in
+//            controller.reloadTableView()
+//            self?.navigationController?.popViewController(animated: true)
+//        }
+//        taskController.configure(taskModel: taskModel)
+//        return taskController
+//    }
 
