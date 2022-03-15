@@ -1,17 +1,17 @@
 //
-//  EditViewModel.swift
+//  TaskViewModel.swift
 //  To-do-list
 //
-//  Created by ineta.magone on 14/03/2022.
+//  Created by ineta.magone on 15/03/2022.
 //
 
-import UIKit
+import Foundation
 
-class EditViewModel: BaseViewModelProtocol {
-    var onSetTitle: ((String) -> Void)?
+final class TaskViewModel: BaseViewModelProtocol {
     
     private let taskManager = TaskManager.shared
     var onReturn: (() -> Void)?
+    var onSetTitle: ((String) -> Void)?
     private var title: String = ""
     
     func launch() {
@@ -34,5 +34,4 @@ class EditViewModel: BaseViewModelProtocol {
     func setTitle(title: String) {
         self.title = title
     }
-    
 }

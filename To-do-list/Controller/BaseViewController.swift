@@ -13,21 +13,21 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var descriptionField: UITextView!
     
-    var baseViewModel: BaseViewModel?
+    var baseViewModel: BaseViewModelProtocol?
     
-    func configure(baseModel: BaseViewModel) {
+    func configure(baseModel: BaseViewModelProtocol) {
         self.baseViewModel = baseModel
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [ weak self ] in
+            self?.baseViewModel?.onSetTitle = { [ weak self ] titleText in
+                self?.viewTitle?.text = titleText
+            }
+            self?.baseViewModel?.launch()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewTitle?.text = "Base title"
-        self.titleField?.delegate = self
-        self.descriptionField?.delegate = self
-        titleField?.placeholder = "Task title"
-        titleField?.becomeFirstResponder()
-        descriptionField?.text = "description..."
-        descriptionField?.textColor = UIColor.lightGray
+        setupItems()
     }
     
     internal func textViewDidBeginEditing(_ textView: UITextView) {
@@ -54,26 +54,15 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         self.viewTitle?.text = title
     }
 }
-
-final class TaskViewController: BaseViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let title = "Task Controller"
-        setViewTitle(title: title)
-        //self.view.backgroundColor = .red
+                                      
+private extension BaseViewController {
+    func setupItems() {
+        self.viewTitle?.text = "Base title"
+        self.titleField?.delegate = self
+        self.descriptionField?.delegate = self
+        titleField?.placeholder = "Task title"
+        titleField?.becomeFirstResponder()
+        descriptionField?.text = "description..."
+        descriptionField?.textColor = UIColor.lightGray
     }
 }
-
-final class EditViewController: BaseViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let title = "Edit Controller"
-        setViewTitle(title: title)
-    }
-}
-
-    
-    
-

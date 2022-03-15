@@ -36,4 +36,9 @@ class ViewModel {
     func removeRow(index: Int) -> TaskManager.Task {
         return (taskManager.tasks.remove(at: index))
     }
+    
+//    func setSelectedTask(title: String, description: String) {
+//        taskManager.selectedTask.updateValue(title, forKey: "title")
+//        taskManager.selectedTask.updateValue(description, forKey: "description")
+//    }
 }

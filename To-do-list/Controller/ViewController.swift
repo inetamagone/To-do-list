@@ -134,6 +134,10 @@ extension ViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let task = viewModel?.getTask(index: indexPath.row)
+        let title = task?.title ?? ""
+        let description = task?.description ?? ""
+        //viewModel?.setSelectedTask(title: title, description: description)
         viewModel?.openEditViewController()
     }
 }

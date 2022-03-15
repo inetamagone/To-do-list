@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FCD3338727E0CC4100725A72 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD3338627E0CC4100725A72 /* TaskViewModel.swift */; };
 		FCDD511B27DF2BA5009167E0 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDD511A27DF2BA5009167E0 /* EditViewModel.swift */; };
 		FCEE43A927D0ABB20073AE7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEE43A827D0ABB20073AE7E /* AppDelegate.swift */; };
 		FCEE43AD27D0ABB20073AE7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEE43AC27D0ABB20073AE7E /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FCD3338627E0CC4100725A72 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		FCDD511A27DF2BA5009167E0 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		FCEE43A527D0ABB20073AE7E /* To-do-list.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "To-do-list.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEE43A827D0ABB20073AE7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				FCEE43BF27D0BE700073AE7E /* BaseViewController.swift */,
 				FCEF8F6027D5EC88008BF6C8 /* BaseViewModel.swift */,
 				FCDD511A27DF2BA5009167E0 /* EditViewModel.swift */,
+				FCD3338627E0CC4100725A72 /* TaskViewModel.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				FCEE43C427D0DE480073AE7E /* TableViewCell.swift in Sources */,
 				FCDD511B27DF2BA5009167E0 /* EditViewModel.swift in Sources */,
 				FCEF8F6127D5EC88008BF6C8 /* BaseViewModel.swift in Sources */,
+				FCD3338727E0CC4100725A72 /* TaskViewModel.swift in Sources */,
 				FCEE43BE27D0BCED0073AE7E /* TaskManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

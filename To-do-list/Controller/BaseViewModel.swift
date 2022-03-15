@@ -7,23 +7,14 @@
 
 import UIKit
 
-class BaseViewModel {
+protocol BaseViewModelProtocol {
     
-    private let taskManager = TaskManager.shared
+    var onReturn: (() -> Void)? { get set }
+    var onSetTitle: ((String) -> Void)? { get set }
     
-    var onReturn: (() -> Void)?
-    
-    func saveTask(title: String, description: String) {
-        addTasks(title: title, description: description)
-        onReturn?()
-    }
-    
-    func addTasks(title: String, description: String) {
-        taskManager.tasks.append(TaskManager.Task(title: title, description: description, completed: false))
-    }
-    
-    func deleteTaskManagerTasks() {
-        taskManager.tasks = []
-    }
-    
+    func launch()
+    func saveTask(title: String, description: String)
+    func addTasks(title: String, description: String)
+    func deleteTaskManagerTasks()
+    func setTitle(title: String)
 }
