@@ -15,7 +15,6 @@ class BaseViewModel {
     
     func saveTask(title: String, description: String) {
         addTasks(title: title, description: description)
-        print(taskManager.tasks)
         onReturn?()
     }
     

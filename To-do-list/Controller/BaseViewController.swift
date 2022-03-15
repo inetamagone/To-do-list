@@ -45,18 +45,9 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        print("tap")
         guard let title = titleField.text, !title.isEmpty else { return }
         guard let description = descriptionField.text, !description.isEmpty else { return }
         baseViewModel?.saveTask(title: title, description: description)
-    }
-    
-    func showSubViewController(viewController: UIViewController) {
-        self.addChild(viewController)
-        self.view.addSubview(viewController.view)
-        self.didMove(toParent: self)
-        self.view.frame = self.view.bounds
-        setViewTitle(title: "ADD A TASK")
     }
     
     func setViewTitle(title: String) {
@@ -68,12 +59,9 @@ final class TaskViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //viewTitle?.text = "ADD TASK"
-        let title = "Add a Task"
+        let title = "Task Controller"
         setViewTitle(title: title)
         //self.view.backgroundColor = .red
-        print("taskVC")
-        print(viewTitle?.text ?? "empty")
     }
 }
 
@@ -81,7 +69,7 @@ final class EditViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let title = "Edit Task"
+        let title = "Edit Controller"
         setViewTitle(title: title)
     }
 }
