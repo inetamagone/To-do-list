@@ -21,6 +21,10 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             self?.baseViewModel?.onSetTitle = { [ weak self ] titleText in
                 self?.viewTitle?.text = titleText
             }
+            self?.baseViewModel?.onSetTaskText = { [ weak self ] title, description in
+                self?.titleField?.text = title
+                self?.descriptionField?.text = description
+            }
             self?.baseViewModel?.launch()
         }
     }
@@ -50,9 +54,6 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         baseViewModel?.saveTask(title: title, description: description)
     }
     
-    func setViewTitle(title: String) {
-        self.viewTitle?.text = title
-    }
 }
                                       
 private extension BaseViewController {

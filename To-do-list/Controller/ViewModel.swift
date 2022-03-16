@@ -10,8 +10,11 @@ import UIKit
 class ViewModel {
     
     private let taskManager = TaskManager.shared
+    var taskTitle: String = ""
+    var taskDescription: String = ""
     var onOpenTaskViewController: (() -> Void)?
     var onOpenEditViewController: (() -> Void)?
+    var onEditTask: ((Int) -> Void)?
     
     func shouldOpenTaskViewController() {
         self.onOpenTaskViewController?()
@@ -37,8 +40,12 @@ class ViewModel {
         return (taskManager.tasks.remove(at: index))
     }
     
-//    func setSelectedTask(title: String, description: String) {
-//        taskManager.selectedTask.updateValue(title, forKey: "title")
-//        taskManager.selectedTask.updateValue(description, forKey: "description")
-//    }
+    func editTask(at indexPath: IndexPath) {
+        onEditTask?(indexPath.row)
+    }
+    
+    func getTaskStrings(title: String, description: String) {
+        self.taskTitle = title
+        self.taskDescription = description
+    }
 }

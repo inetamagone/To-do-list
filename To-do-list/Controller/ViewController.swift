@@ -137,7 +137,8 @@ extension ViewController: UITableViewDelegate {
         let task = viewModel?.getTask(index: indexPath.row)
         let title = task?.title ?? ""
         let description = task?.description ?? ""
-        //viewModel?.setSelectedTask(title: title, description: description)
+        viewModel?.getTaskStrings(title: title, description: description)
+        viewModel?.editTask(at: indexPath)
         viewModel?.openEditViewController()
     }
 }

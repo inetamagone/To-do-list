@@ -13,6 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var storyboard = UIStoryboard(name: "Main", bundle: nil)
     var navigationController: UINavigationController?
+    // For EditController
+    var taskTitle: String = ""
+    var taskDescription: String = ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -38,6 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         viewModel.onOpenEditViewController = { [ weak self ] in
             guard let self = self else { return }
+            // taskTitle and taskDescription got before creation of editController
+            self.taskTitle = viewModel.taskTitle
+            self.taskDescription = viewModel.taskDescription
             let editController = self.createEditViewController(controller: controller)
             self.navigationController?.pushViewController(editController, animated: true)
         }
@@ -66,12 +72,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let editController = createBaseViewController()
         let editModel = EditViewModel()
         editModel.onReturn = { [ weak self ] in
+            
+            var index: Int = 0
+            editModel.getTask(at: index)
             controller.reloadTableView()
             self?.navigationController?.popViewController(animated: true)
         }
         editController.configure(baseModel: editModel)
         editModel.setTitle(title: "Edit Controller")
+        editModel.setTaskStrings(taskTitle: taskTitle, taskDescription: taskDescription)
         return editController
+        
     }
+    
+    
 }
 
