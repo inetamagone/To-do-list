@@ -12,15 +12,15 @@ class ViewModel {
     private let taskManager = TaskManager.shared
     var taskTitle: String = ""
     var taskDescription: String = ""
+    var index: Int = 0
     var onOpenTaskViewController: (() -> Void)?
     var onOpenEditViewController: (() -> Void)?
-    var onEditTask: ((Int) -> Void)?
     
     func shouldOpenTaskViewController() {
         self.onOpenTaskViewController?()
     }
     
-    func openEditViewController() {
+    func shouldOpenEditViewController() {
         self.onOpenEditViewController?()
     }
     
@@ -40,8 +40,8 @@ class ViewModel {
         return (taskManager.tasks.remove(at: index))
     }
     
-    func editTask(at indexPath: IndexPath) {
-        onEditTask?(indexPath.row)
+    func getIndex(index: Int) {
+        self.index = index
     }
     
     func getTaskStrings(title: String, description: String) {

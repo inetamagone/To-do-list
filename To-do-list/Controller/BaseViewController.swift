@@ -35,8 +35,10 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
     
     internal func textViewDidBeginEditing(_ textView: UITextView) {
-        if descriptionField.textColor == UIColor.lightGray {
+        if descriptionField.text == "description..." {
             descriptionField.text = nil
+            descriptionField.textColor = UIColor.black
+        } else {
             descriptionField.textColor = UIColor.black
         }
     }
@@ -51,9 +53,8 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let title = titleField.text, !title.isEmpty else { return }
         guard let description = descriptionField.text, !description.isEmpty else { return }
-        baseViewModel?.saveTask(title: title, description: description)
+        baseViewModel?.onReturn?(title, description)
     }
-    
 }
                                       
 private extension BaseViewController {

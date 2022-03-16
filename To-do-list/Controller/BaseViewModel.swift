@@ -9,13 +9,13 @@ import UIKit
 
 protocol BaseViewModelProtocol {
     
-    var onReturn: (() -> Void)? { get set }
+    var onReturn: ((String, String) -> Void)? { get set }
     var onSetTitle: ((String) -> Void)? { get set }
     var onSetTaskText: ((String, String) -> Void)? { get set }
     
     func launch()
     func saveTask(title: String, description: String)
-    func addTasks(title: String, description: String)
+    //func addTasks(title: String, description: String)
     func deleteTaskManagerTasks()
     func getTask(at index: Int)
     func setTitle(title: String)

@@ -137,9 +137,10 @@ extension ViewController: UITableViewDelegate {
         let task = viewModel?.getTask(index: indexPath.row)
         let title = task?.title ?? ""
         let description = task?.description ?? ""
+        let indexPathRow = indexPath.row
         viewModel?.getTaskStrings(title: title, description: description)
-        viewModel?.editTask(at: indexPath)
-        viewModel?.openEditViewController()
+        viewModel?.getIndex(index: indexPathRow)
+        viewModel?.shouldOpenEditViewController()
     }
 }
 

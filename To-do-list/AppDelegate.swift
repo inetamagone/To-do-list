@@ -13,9 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var storyboard = UIStoryboard(name: "Main", bundle: nil)
     var navigationController: UINavigationController?
-    // For EditController
+    
     var taskTitle: String = ""
     var taskDescription: String = ""
+    var indexPathRow: Int = 0
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -38,12 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let taskController = self.createTaskViewController(controller: controller)
             self.navigationController?.pushViewController(taskController, animated: true)
         }
-        
         viewModel.onOpenEditViewController = { [ weak self ] in
             guard let self = self else { return }
-            // taskTitle and taskDescription got before creation of editController
+            // taskTitle, taskDescription and indexPathRow got before creation of editController
             self.taskTitle = viewModel.taskTitle
             self.taskDescription = viewModel.taskDescription
+            self.indexPathRow = viewModel.index
             let editController = self.createEditViewController(controller: controller)
             self.navigationController?.pushViewController(editController, animated: true)
         }
@@ -59,32 +60,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func createTaskViewController(controller: ViewController) -> UIViewController {
         let taskController = createBaseViewController()
         let taskModel = TaskViewModel()
-        taskModel.onReturn = { [ weak self ] in
+        taskModel.onReturn = { [ weak self ] titleString, descriptionString in
+            taskModel.saveTask(title: titleString, description: descriptionString)
             controller.reloadTableView()
             self?.navigationController?.popViewController(animated: true)
         }
         taskController.configure(baseModel: taskModel)
-        taskModel.setTitle(title: "Task Controller")
+        taskModel.setTitle(title: "Add a Task")
         return taskController
     }
     
     func createEditViewController(controller: ViewController) -> UIViewController {
         let editController = createBaseViewController()
         let editModel = EditViewModel()
-        editModel.onReturn = { [ weak self ] in
-            
-            var index: Int = 0
-            editModel.getTask(at: index)
+        editModel.onReturn = { [ weak self ] titleString, descriptionString in
+            editModel.getTask(at: self?.indexPathRow ?? 0)
+            editModel.editTask(title: titleString, description: descriptionString)
             controller.reloadTableView()
             self?.navigationController?.popViewController(animated: true)
         }
         editController.configure(baseModel: editModel)
-        editModel.setTitle(title: "Edit Controller")
+        editModel.setTitle(title: "Edit Task")
         editModel.setTaskStrings(taskTitle: taskTitle, taskDescription: taskDescription)
         return editController
-        
     }
-    
     
 }
 

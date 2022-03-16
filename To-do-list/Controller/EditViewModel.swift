@@ -10,10 +10,11 @@ import UIKit
 class EditViewModel: BaseViewModelProtocol {
     var onSetTitle: ((String) -> Void)?
     var onSetTaskText: ((String, String) -> Void)?
+    var onReturn: ((String, String) -> Void)?
     
     private let taskManager = TaskManager.shared
     var task: TaskManager.Task?
-    var onReturn: (() -> Void)?
+    
     private var title: String = ""
     private var taskTitle: String = ""
     private var taskDescription: String = ""
@@ -27,7 +28,6 @@ class EditViewModel: BaseViewModelProtocol {
     
     func saveTask(title: String, description: String) {
         addTasks(title: title, description: description)
-        onReturn?()
     }
     
     func addTasks(title: String, description: String) {
@@ -55,7 +55,6 @@ class EditViewModel: BaseViewModelProtocol {
     func editTask(title: String?, description: String?) {
         let task = TaskManager.Task(title: title, description: description)
         taskManager.edit(task: task, at: self.index)
-        onReturn?()
     }
     
 }

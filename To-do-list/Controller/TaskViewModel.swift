@@ -11,7 +11,7 @@ final class TaskViewModel: BaseViewModelProtocol {
     
     private let taskManager = TaskManager.shared
     var task: TaskManager.Task?
-    var onReturn: (() -> Void)?
+    var onReturn: ((String, String) -> Void)?
     var onSetTitle: ((String) -> Void)?
     var onSetTaskText: ((String, String) -> Void)?
     private var title: String = ""
@@ -25,7 +25,6 @@ final class TaskViewModel: BaseViewModelProtocol {
     
     func saveTask(title: String, description: String) {
         addTasks(title: title, description: description)
-        onReturn?()
     }
     
     func addTasks(title: String, description: String) {
@@ -53,6 +52,5 @@ final class TaskViewModel: BaseViewModelProtocol {
     func editTask(title: String?, description: String?) {
         let task = TaskManager.Task(title: title, description: description)
         taskManager.edit(task: task, at: self.index)
-        onReturn?()
     }
 }
